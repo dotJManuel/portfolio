@@ -1,8 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { proyectos } from '../data/proyectos.ts';
 ---
 
 <Layout title="José Manuel Hernández — Desarrollador Backend .NET">
 	<Hero />
+
+	<section class="proyectos"> 
+		<h2>Proyectos</h2>
+		<div class="grid">
+			{proyectos.map((p) => (
+				<ProjectCard 
+					titulo={p.titulo}
+					descripcion={p.descripcion}
+					tecnologias={p.tecnologias}
+					repo={p.repo}
+				/>
+			))}
+		</div>
+	</section>
 </Layout>
+
+<style>
+  .proyectos { max-width: 900px; margin: 0 auto; padding: 4rem 1rem; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+</style>
