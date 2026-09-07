@@ -3,14 +3,25 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ExperienceItem from '../components/ExperienceItem.astro';
+import SkillCategory from '../components/SkillCategory.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import CertCard from '../components/CertCard.astro';
 import { proyectos } from '../data/proyectos.ts';
 import { experiencias } from '../data/experiencia.ts';
-import SkillCategory from '../components/SkillCategory.astro';
 import { skills } from '../data/skills.ts';
+import { certificaciones } from '../data/certificaciones.ts';
 ---
 
 <Layout title="José Manuel Hernández — Desarrollador Backend .NET">
 	<Hero />
+
+	<section id="tecnologias" class="seccion">
+		<h2>Tecnologías</h2>
+		<div class="grid">
+			{skills.map((s) => <SkillCategory skill={s} />)}
+		</div>
+	</section>
 
 	<section id="experiencia" class="seccion">
 		<h2>Experiencia</h2>
@@ -25,21 +36,22 @@ import { skills } from '../data/skills.ts';
 			{proyectos.map((p) => (
 				<ProjectCard
 					titulo={p.titulo}
-			descripcion={p.descripcion}
-			tecnologias={p.tecnologias}
-			repo={p.repo}
-		/>
-		))}
+					descripcion={p.descripcion}
+					tecnologias={p.tecnologias}
+					repo={p.repo}
+				/>
+			))}
 		</div>
   	</section>
 
-	<section id="tecnologias" class="seccion">
-		<h2>Tecnologías</h2>
-		<div class="grid">
-			{skills.map((s) => <SkillCategory skill={s} />)}
+	 <section id="certificaciones" class="seccion">
+		<h2>Certificaciones</h2>
+		<div class="cert-list">
+			{certificaciones.map((c) => <CertCard cert={c} />)}
 		</div>
-	</section>
+  	</section>
 
+	<Contact />
 </Layout>
 
 <style>
