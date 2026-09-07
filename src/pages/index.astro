@@ -12,14 +12,14 @@ import { skills } from '../data/skills.ts';
 <Layout title="José Manuel Hernández — Desarrollador Backend .NET">
 	<Hero />
 
-	<section class="seccion">
+	<section id="experiencia" class="seccion">
 		<h2>Experiencia</h2>
 		<div class="timeline">
 			{experiencias.map((exp) => <ExperienceItem experiencia={exp} />)}
 		</div>
 	</section>
 
-	<section class="seccion">
+	<section id="proyectos" class="seccion">
 		<h2>Proyectos</h2>
 		<div class="grid">
 			{proyectos.map((p) => (
@@ -33,13 +33,13 @@ import { skills } from '../data/skills.ts';
 		</div>
   	</section>
 
-	<section class="seccion">
+	<section id="tecnologias" class="seccion">
 		<h2>Tecnologías</h2>
 		<div class="grid">
 			{skills.map((s) => <SkillCategory skill={s} />)}
 		</div>
 	</section>
-	
+
 </Layout>
 
 <style>
