@@ -5,31 +5,41 @@ import ProjectCard from '../components/ProjectCard.astro';
 import ExperienceItem from '../components/ExperienceItem.astro';
 import { proyectos } from '../data/proyectos.ts';
 import { experiencias } from '../data/experiencia.ts';
+import SkillCategory from '../components/SkillCategory.astro';
+import { skills } from '../data/skills.ts';
 ---
 
 <Layout title="José Manuel Hernández — Desarrollador Backend .NET">
-  <Hero />
+	<Hero />
 
-  <section class="seccion">
-    <h2>Experiencia</h2>
-    <div class="timeline">
-      {experiencias.map((exp) => <ExperienceItem experiencia={exp} />)}
-    </div>
-  </section>
+	<section class="seccion">
+		<h2>Experiencia</h2>
+		<div class="timeline">
+			{experiencias.map((exp) => <ExperienceItem experiencia={exp} />)}
+		</div>
+	</section>
 
-  <section class="seccion">
-    <h2>Proyectos</h2>
-    <div class="grid">
-      {proyectos.map((p) => (
-        <ProjectCard
-          titulo={p.titulo}
-          descripcion={p.descripcion}
-          tecnologias={p.tecnologias}
-          repo={p.repo}
-        />
-      ))}
-    </div>
-  </section>
+	<section class="seccion">
+		<h2>Proyectos</h2>
+		<div class="grid">
+			{proyectos.map((p) => (
+				<ProjectCard
+					titulo={p.titulo}
+			descripcion={p.descripcion}
+			tecnologias={p.tecnologias}
+			repo={p.repo}
+		/>
+		))}
+		</div>
+  	</section>
+
+	<section class="seccion">
+		<h2>Tecnologías</h2>
+		<div class="grid">
+			{skills.map((s) => <SkillCategory skill={s} />)}
+		</div>
+	</section>
+	
 </Layout>
 
 <style>

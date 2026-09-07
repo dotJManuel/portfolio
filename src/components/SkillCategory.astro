@@ -1,0 +1,43 @@
+---
+import type { CategoriaSkill } from '../data/types';
+
+interface Props {
+  skill: CategoriaSkill;
+}
+const { skill } = Astro.props;
+---
+
+<div class="cat">
+  <h3>{skill.categoria}</h3>
+  <ul>
+    {skill.items.map((item) => <li>{item}</li>)}
+  </ul>
+</div>
+
+<style>
+  .cat {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1.25rem;
+  }
+  .cat h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    color: #2563eb;
+  }
+  .cat ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .cat li {
+    background: #f1f5f9;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+</style>

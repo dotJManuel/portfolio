@@ -12,3 +12,8 @@ export interface Experiencia {
   ubicacion: string;
   logros: string[];
 }
+
+export interface CategoriaSkill {
+  categoria: string;
+  items: string[];
+}
