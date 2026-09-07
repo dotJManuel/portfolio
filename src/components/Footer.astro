@@ -1,0 +1,31 @@
+---
+const anio = new Date().getFullYear();
+---
+
+<footer class="footer">
+    <p>© {anio} José Manuel Hernández · Construido con Astro</p>
+    <div class="social">
+        <a href="https://github.com/dotJManuel" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/dotjmanuel" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+</footer>
+
+<style>
+    .footer {
+        border-top: 1px solid #e5e7eb;
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+        color: #777;
+        font-size: 0.9rem;
+    }
+    .social {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+    .footer a { 
+        color: #2563eb; 
+        text-decoration: none; 
+    }
+</style>
