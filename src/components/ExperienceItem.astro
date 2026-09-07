@@ -1,0 +1,51 @@
+---
+import type { Experiencia } from '../data/types';
+
+interface Props {
+  experiencia: Experiencia;
+}
+const { experiencia } = Astro.props;
+const { puesto, empresa, periodo, ubicacion, logros } = experiencia;
+---
+
+<article class="item">
+  <div class="head">
+    <h3>{puesto} · <span class="empresa">{empresa}</span></h3>
+    <span class="periodo">{periodo}</span>
+  </div>
+  <p class="ubicacion">{ubicacion}</p>
+
+  <ul class="logros">
+    {logros.map((logro) => <li>{logro}</li>)}
+  </ul>
+</article>
+
+<style>
+  .item {
+    border-left: 2px solid #2563eb;
+    padding: 0 0 2rem 1.5rem;
+    position: relative;
+  }
+  .item::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #2563eb;
+  }
+  .head {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  .head h3 { margin: 0; font-size: 1.05rem; }
+  .empresa { color: #2563eb; }
+  .periodo { color: #777; font-size: 0.9rem; }
+  .ubicacion { color: #777; font-size: 0.9rem; margin: 0.2rem 0 0.8rem; }
+  .logros { color: #444; padding-left: 1.1rem; }
+  .logros li { margin-bottom: 0.4rem; }
+</style>

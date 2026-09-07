@@ -2,29 +2,39 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import ExperienceItem from '../components/ExperienceItem.astro';
 import { proyectos } from '../data/proyectos.ts';
+import { experiencias } from '../data/experiencia.ts';
 ---
 
 <Layout title="José Manuel Hernández — Desarrollador Backend .NET">
-	<Hero />
+  <Hero />
 
-	<section class="proyectos"> 
-		<h2>Proyectos</h2>
-		<div class="grid">
-			{proyectos.map((p) => (
-				<ProjectCard 
-					titulo={p.titulo}
-					descripcion={p.descripcion}
-					tecnologias={p.tecnologias}
-					repo={p.repo}
-				/>
-			))}
-		</div>
-	</section>
+  <section class="seccion">
+    <h2>Experiencia</h2>
+    <div class="timeline">
+      {experiencias.map((exp) => <ExperienceItem experiencia={exp} />)}
+    </div>
+  </section>
+
+  <section class="seccion">
+    <h2>Proyectos</h2>
+    <div class="grid">
+      {proyectos.map((p) => (
+        <ProjectCard
+          titulo={p.titulo}
+          descripcion={p.descripcion}
+          tecnologias={p.tecnologias}
+          repo={p.repo}
+        />
+      ))}
+    </div>
+  </section>
 </Layout>
 
 <style>
-  .proyectos { max-width: 900px; margin: 0 auto; padding: 4rem 1rem; }
+  .seccion { max-width: 900px; margin: 0 auto; padding: 3rem 1rem; }
+  .timeline { margin-top: 1.5rem; }
   .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

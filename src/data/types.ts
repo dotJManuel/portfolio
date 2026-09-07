@@ -4,3 +4,11 @@ export interface Proyecto {
   tecnologias: string[];
   repo?: string;
 }
+
+export interface Experiencia {
+  puesto: string;
+  empresa: string;
+  periodo: string;
+  ubicacion: string;
+  logros: string[];
+}
