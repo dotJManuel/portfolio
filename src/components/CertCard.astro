@@ -1,0 +1,49 @@
+---
+import type { Certificacion } from '../data/types';
+
+interface Props {
+  cert: Certificacion;
+}
+const { cert } = Astro.props;
+---
+
+<div class="cert">
+    <div class="info">
+        <h3>{cert.nombre}</h3>
+        <p>{cert.emisor} · {cert.fecha}</p>
+    </div>
+
+    {cert.url && (
+        <a href={cert.url} target="_blank" rel="noopener noreferrer" class="verificar">
+            Verificar →
+        </a>
+    )}
+</div>
+
+<style>
+    .cert {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        background: white;
+    }
+    .cert h3 { 
+        margin: 0; 
+        font-size: 0.95rem; 
+    }
+    .cert .info p { 
+        margin: 0.2rem 0 0; 
+        color: #777; 
+        font-size: 0.85rem; 
+    }
+    .verificar {
+        color: #2563eb;
+        text-decoration: none;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+</style>

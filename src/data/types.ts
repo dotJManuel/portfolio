@@ -17,3 +17,10 @@ export interface CategoriaSkill {
   categoria: string;
   items: string[];
 }
+
+export interface Certificacion {
+  nombre: string;
+  emisor: string;
+  fecha: string;
+  url?: string;
+}
