@@ -2,7 +2,9 @@ export interface Proyecto {
   titulo: string;
   descripcion: string;
   tecnologias: string[];
+  rol?: string;
   repo?: string;
+  demo?: string;
 }
 
 export interface Experiencia {

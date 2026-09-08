@@ -3,21 +3,27 @@ interface Props {
     titulo: string;
     descripcion: string;
     tecnologias: string[];
+    rol?: string;
     repo?: string;
+    demo?: string;
 }
 
-const { titulo, descripcion, tecnologias, repo } = Astro.props as Props;
+const { titulo, descripcion, tecnologias, rol, repo, demo } = Astro.props as Props;
 ---
 
 <article class="card">
     <h3>{titulo}</h3>
+    {rol && <p class="rol">{rol}</p>}
     <p>{descripcion}</p>
 
     <ul class="tags">
         {tecnologias.map((tech) => <li>{tech}</li>)}
     </ul>
 
-    {repo && <a href={repo} class="link">Ver código</a>}
+    <div class="links">
+        {demo && <a href={demo} class="link" target="_blank" rel="noopener">Ver producto</a>}
+        {repo && <a href={repo} class="link">Ver código</a>}
+    </div>
 </article>
 
 <style>
@@ -27,8 +33,18 @@ const { titulo, descripcion, tecnologias, repo } = Astro.props as Props;
     padding: 1.5rem;
     background: white;
   }
-  .card h3 { margin: 0 0 0.5rem; }
-  .card p { color: #555; }
+  .card h3 { 
+    margin: 0 0 0.5rem; 
+  }
+  .rol {
+    margin: 0 0 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #2563eb;
+  }
+  .card p { 
+    color: #555; 
+  }
   .tags {
     display: flex;
     flex-wrap: wrap;
@@ -44,5 +60,13 @@ const { titulo, descripcion, tecnologias, repo } = Astro.props as Props;
     padding: 0.25rem 0.6rem;
     border-radius: 999px;
   }
-  .link { color: #2563eb; text-decoration: none; font-weight: 600; }
+  .links {
+    display: flex;
+    gap: 1rem;
+  }
+  .link { 
+    color: #2563eb; 
+    text-decoration: none; 
+    font-weight: 600; 
+  }
 </style>

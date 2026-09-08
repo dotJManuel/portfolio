@@ -38,7 +38,9 @@ import { certificaciones } from '../data/certificaciones.ts';
 					titulo={p.titulo}
 					descripcion={p.descripcion}
 					tecnologias={p.tecnologias}
+					rol={p.rol}
 					repo={p.repo}
+					demo={p.demo}
 				/>
 			))}
 		</div>
@@ -55,11 +57,17 @@ import { certificaciones } from '../data/certificaciones.ts';
 </Layout>
 
 <style>
-  .seccion { max-width: 900px; margin: 0 auto; padding: 3rem 1rem; }
-  .timeline { margin-top: 1.5rem; }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
-  }
+  	.seccion { 
+		max-width: 900px; 
+		margin: 0 auto; 
+		padding: 3rem 1rem; 
+	}
+  	.timeline { 
+		margin-top: 1.5rem; 
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: 1.5rem;
+	}
 </style>
