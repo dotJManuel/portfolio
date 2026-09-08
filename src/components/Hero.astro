@@ -1,51 +1,150 @@
 ---
-
+const linkedin = "https://www.linkedin.com/in/dotjmanuel/";
+const github = "https://github.com/dotJManuel";
+const cvUrl = "/CV.pdf";
 ---
 
-<section class="hero">
-  <h1>José Manuel Hernández</h1>
-  <p class="role">Desarrollador Backend .NET · Integraciones · APIs</p>
-  <p class="tagline">
-    Construyo soluciones empresariales con .NET, SQL y SAP Business One.
-  </p>
+<section id="inicio" class="hero">
+  <div class="hero-intro">
+    <div class="status">
+      <span class="status-dot"></span>
+      <span>Hidalgo, México · disponible</span>
+    </div>
+    <h1 class="hero-name">José Manuel<br />Hernández</h1>
+    <div class="hero-roles">
+      <span>Ingeniero de Software</span>
+      <span class="role-sep"></span>
+      <span>Backend .NET</span>
+      <span class="role-sep"></span>
+      <span>Integraciones y APIs</span>
+    </div>
+    <p class="hero-lead">Construyo software empresarial de principio a fin: APIs y servicios en .NET, bases de datos que aguantan y plataformas que la gente usa todos los días para trabajar.</p>
+    <div class="hero-actions">
+      <a href={github} target="_blank" rel="noopener" class="btn btn-primary">GitHub ↗</a>
+      <a href={linkedin} target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn ↗</a>
+      <a href={cvUrl} class="btn btn-ghost hero-cv">Descargar CV</a>
+    </div>
+  </div>
 
-  <div class="actions">
-    <a href="https://github.com/dotJManuel" class="btn">GitHub</a>
-    <a href="https://linkedin.com/in/dotjmanuel" class="btn">LinkedIn</a>
-    <a href="/CV.pdf" class="btn btn-outline">Descargar CV</a>
+  <div class="cards">
+    <div class="card">
+      <div class="card-num">01</div>
+      <div class="card-title">Arquitectura backend</div>
+      <p class="card-desc">APIs y servicios en .NET sobre SQL Server: microservicios, mensajería asíncrona, autenticación y control de acceso pensados para operar años, no para una demo.</p>
+    </div>
+    <div class="card">
+      <div class="card-num">02</div>
+      <div class="card-title">Productos completos</div>
+      <p class="card-desc">De la base de datos al dashboard. Plataformas SaaS en producción con clientes activos, en desarrollo y mejora continua.</p>
+    </div>
+    <div class="card">
+      <div class="card-num">03</div>
+      <div class="card-title">Sistemas que se hablan</div>
+      <p class="card-desc">Integraciones REST y SOAP, workers de procesamiento continuo y tiempo real entre plataformas que nunca fueron hechas para convivir.</p>
+    </div>
   </div>
 </section>
 
 <style>
   .hero {
-    text-align: center;
-    padding: 6rem 1rem;
-  }
-  .role {
-    font-weight: 600;
-    color: #2563eb;
-  }
-  .tagline {
-    color: #555;
-    max-width: 40ch;
-    margin: 0.5rem auto;
-  }
-  .actions {
+    scroll-margin-top: 80px;
+    padding: calc(var(--space-8) * 3.4) 0 calc(var(--space-8) * 3);
     display: flex;
-    gap: 1rem;
-    justify-content: center;
-    margin-top: 1.5rem;
+    flex-direction: column;
+    gap: calc(var(--space-8) * 1.6);
   }
-  .btn {
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
-    background: #2563eb;
-    color: white;
-    text-decoration: none;
+  .hero-intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    max-width: 860px;
   }
-  .btn-outline {
-    background: transparent;
-    border: 1px solid #2563eb;
-    color: #2563eb;
+  .status {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-neutral-500);
+  }
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent-400);
+    animation: pulseDot 2.4s ease-in-out infinite;
+  }
+  .hero-name {
+    font-size: clamp(40px, 6vw, 82px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+    margin: 0;
+  }
+  .hero-roles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    color: var(--color-accent-300);
+  }
+  .role-sep { width: 16px; height: 1px; background: var(--color-accent-600); }
+  .hero-lead {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--color-neutral-300);
+    max-width: 58ch;
+    margin: 0;
+    text-wrap: pretty;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+    margin-top: var(--space-3);
+  }
+  .hero-actions .btn { text-decoration: none; }
+  .hero-cv { color: var(--color-neutral-400); }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1px;
+    background: var(--color-neutral-800);
+    border: 1px solid var(--color-neutral-800);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+  .card {
+    background: var(--color-bg);
+    padding: calc(var(--space-8) * 1.2) var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .card-num {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-neutral-500);
+  }
+  .card-title {
+    font-size: 19px;
+    letter-spacing: -0.018em;
+    color: var(--color-neutral-100);
+    text-wrap: pretty;
+  }
+  .card-desc {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--color-neutral-400);
+    margin: 0;
+    text-wrap: pretty;
   }
 </style>
