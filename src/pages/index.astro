@@ -4,7 +4,6 @@ import Hero from '../components/Hero.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ExperienceItem from '../components/ExperienceItem.astro';
 import SkillCategory from '../components/SkillCategory.astro';
-import About from '../components/About.astro';
 import Contact from '../components/Contact.astro';
 import CertCard from '../components/CertCard.astro';
 import { proyectos } from '../data/proyectos.ts';
@@ -13,61 +12,109 @@ import { skills } from '../data/skills.ts';
 import { certificaciones } from '../data/certificaciones.ts';
 ---
 
-<Layout title="José Manuel Hernández — Desarrollador Backend .NET">
-	<Hero />
+<Layout title="José Manuel Hernández — Ingeniero de Software">
+  <main class="wrap">
+    <Hero />
 
-	<section id="tecnologias" class="seccion">
-		<h2>Tecnologías</h2>
-		<div class="grid">
-			{skills.map((s) => <SkillCategory skill={s} />)}
-		</div>
-	</section>
+    <section id="tecnologias" class="section">
+      <div class="section-head">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Tecnologías</h2>
+      </div>
+      <div class="tech-grid">
+        {skills.map((s) => <SkillCategory skill={s} />)}
+      </div>
+    </section>
 
-	<section id="experiencia" class="seccion">
-		<h2>Experiencia</h2>
-		<div class="timeline">
-			{experiencias.map((exp) => <ExperienceItem experiencia={exp} />)}
-		</div>
-	</section>
+    <section id="experiencia" class="section section--wide-gap">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Experiencia</h2>
+      </div>
+      <div class="exp-list">
+        {experiencias.map((e) => <ExperienceItem experiencia={e} />)}
+      </div>
+    </section>
 
-	<section id="proyectos" class="seccion">
-		<h2>Proyectos</h2>
-		<div class="grid">
-			{proyectos.map((p) => (
-				<ProjectCard
-					titulo={p.titulo}
-					descripcion={p.descripcion}
-					tecnologias={p.tecnologias}
-					rol={p.rol}
-					repo={p.repo}
-					demo={p.demo}
-				/>
-			))}
-		</div>
-  	</section>
+    <section id="proyectos" class="section">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Proyectos</h2>
+        <span class="section-hint">Toca una fila para ver el detalle</span>
+      </div>
+      <div class="proj-list">
+        {proyectos.map((p, i) => (
+          <ProjectCard
+            titulo={p.titulo}
+            descripcion={p.descripcion}
+            tecnologias={p.tecnologias}
+            rol={p.rol}
+            demo={p.demo}
+            index={i}
+          />
+        ))}
+      </div>
+    </section>
 
-	 <section id="certificaciones" class="seccion">
-		<h2>Certificaciones</h2>
-		<div class="cert-list">
-			{certificaciones.map((c) => <CertCard cert={c} />)}
-		</div>
-  	</section>
+    <section id="certificaciones" class="section">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Certificaciones</h2>
+      </div>
+      <div class="cert-list">
+        {certificaciones.map((c) => <CertCard cert={c} />)}
+      </div>
+    </section>
 
-	<Contact />
+    <Contact />
+  </main>
 </Layout>
 
 <style>
-  	.seccion { 
-		max-width: 900px; 
-		margin: 0 auto; 
-		padding: 3rem 1rem; 
-	}
-  	.timeline { 
-		margin-top: 1.5rem; 
-	}
-	.grid {
+	.tech-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-		gap: 1.5rem;
+		grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+		gap: 1px;
+		background: var(--color-neutral-800);
+		border: 1px solid var(--color-neutral-800);
+		border-radius: var(--radius-md);
+		overflow: hidden;
+	}
+	.exp-list { 
+		display: flex; 
+		flex-direction: column; 
+		gap: calc(var(--space-8) * 1.8); 
+	}
+	.proj-list { 
+		display: flex; 
+		flex-direction: column; 
+		border-top: 1px solid var(--color-neutral-800); 
+	}
+	.cert-list { 
+		display: flex; 
+		flex-direction: column; 
+		border-top: 1px solid var(--color-neutral-800); 
 	}
 </style>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".proj-item").forEach((item) => {
+    const row = item.querySelector<HTMLElement>(".proj-row");
+    const detail = item.querySelector<HTMLElement>(".proj-detail");
+    const sign = item.querySelector<HTMLElement>(".proj-sign");
+
+    if (!row || !detail || !sign) return;
+
+    const toggle = () => {
+      const abierto = item.classList.toggle("open");
+      detail.hidden = !abierto;
+      sign.textContent = abierto ? "–" : "+";
+    };
+
+    row.addEventListener("click", toggle);
+
+    row.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); toggle(); }
+    });
+  });
+</script>

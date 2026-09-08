@@ -1,34 +1,111 @@
+---
+const correo = "dotjmanuel@gmail.com";
+const telefono = "+52 771 315 9262";
+const tel = "tel:" + telefono.replace(/[^+0-9]/g, "");
+const linkedin = "https://www.linkedin.com/in/dotjmanuel/";
+---
 
-<section id="contacto" class="seccion contacto">
-  <h2>Contacto</h2>
-  <p>¿Tienes un proyecto o una vacante? Hablemos.</p>
-
-  <div class="links">
-    <a href="mailto:dotjmanuel@gmail.com">dotjmanuel@gmail.com</a>
-    <a href="tel:+527713159262">+52 771 315 9262</a>
-    <a href="https://linkedin.com/in/dotjmanuel" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="https://github.com/dotjmanuel" target="_blank" rel="noopener noreferrer">GitHub</a>
+<section id="contacto" class="contact">
+  <div class="section-head">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Contacto</h2>
+  </div>
+  <p class="contact-lead">¿Tienes un proyecto o una vacante? Hablemos.</p>
+  <div class="contact-list">
+    <a class="contact-row" href={`mailto:${correo}`}>
+      <span class="contact-label">Correo</span>
+      <span class="contact-value contact-value--wrap">{correo}</span>
+      <span class="contact-arrow">↗</span>
+    </a>
+    <a class="contact-row" href={tel}>
+      <span class="contact-label">Teléfono</span>
+      <span class="contact-value">{telefono}</span>
+      <span class="contact-arrow">↗</span>
+    </a>
+    <a class="contact-row" href={linkedin} target="_blank" rel="noopener">
+      <span class="contact-label">LinkedIn</span>
+      <span class="contact-value">Perfil profesional</span>
+      <span class="contact-arrow">↗</span>
+    </a>
+    <a class="contact-row" href="https://github.com/dotJManuel" target="_blank" rel="noopener">
+      <span class="contact-label">GitHub</span>
+      <span class="contact-value">github.com/dotJManuel</span>
+      <span class="contact-arrow">↗</span>
+    </a>
+  </div>
+  <div class="contact-foot">
+    <span>José Manuel Hernández · Hidalgo, México · GMT-6</span>
+    <span id="reloj"></span>
   </div>
 </section>
 
 <style>
-    .contacto { 
-        text-align: center; 
-        margin-bottom: 4rem;
-    }
-    .contacto p { 
-        color: #555; 
-        margin-bottom: 1.5rem; 
-    }
-    .links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem 2rem;
-    }
-    .links a {
-        color: #2563eb;
-        text-decoration: none;
-        font-weight: 500;
-    }
+  .contact {
+    scroll-margin-top: 80px;
+    padding: calc(var(--space-8) * 2.6) 0 calc(var(--space-8) * 3.4);
+    border-top: 1px solid var(--color-neutral-800);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-8) * 1.4);
+  }
+  .contact-lead {
+    font-size: 20px;
+    line-height: 1.45;
+    color: var(--color-neutral-200);
+    max-width: 44ch;
+    margin: 0;
+    letter-spacing: -0.015em;
+    text-wrap: pretty;
+  }
+  .contact-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-neutral-800);
+    max-width: 820px;
+  }
+  .contact-row {
+    display: grid;
+    grid-template-columns: 112px minmax(0, 1fr) auto;
+    gap: var(--space-6);
+    align-items: baseline;
+    padding: var(--space-6) var(--space-3);
+    border-bottom: 1px solid var(--color-neutral-800);
+    text-decoration: none;
+    color: var(--color-text);
+    transition: background 140ms ease;
+  }
+  .contact-row:hover { background: var(--color-neutral-900); }
+  .contact-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-neutral-500);
+  }
+  .contact-value { font-size: 16.5px; }
+  .contact-value--wrap { overflow-wrap: anywhere; }
+  .contact-arrow { color: var(--color-accent-400); font-size: 13px; }
+  .contact-foot {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-6);
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    color: var(--color-neutral-500);
+  }
 </style>
+
+<script>
+  const el = document.getElementById("reloj");
+  function tick() {
+    if (!el) return;
+    try {
+      const s = new Intl.DateTimeFormat("es-MX", { timeZone: "America/Mexico_City", hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date());
+      el.textContent = s + " hora local";
+    } catch (e) { el.textContent = ""; }
+  }
+  tick();
+  setInterval(tick, 30000);
+</script>

@@ -1,72 +1,103 @@
 ---
 interface Props {
-    titulo: string;
-    descripcion: string;
-    tecnologias: string[];
-    rol?: string;
-    repo?: string;
-    demo?: string;
+  titulo: string;
+  descripcion: string;
+  tecnologias: string[];
+  rol?: string;
+  demo?: string;
+  index: number;
 }
-
-const { titulo, descripcion, tecnologias, rol, repo, demo } = Astro.props as Props;
+const { titulo, descripcion, tecnologias, rol, demo, index } = Astro.props as Props;
+const num = String(index + 1).padStart(2, "0");
+const abierto = index === 0;
 ---
 
-<article class="card">
-    <h3>{titulo}</h3>
-    {rol && <p class="rol">{rol}</p>}
-    <p>{descripcion}</p>
-
-    <ul class="tags">
-        {tecnologias.map((tech) => <li>{tech}</li>)}
-    </ul>
-
-    <div class="links">
-        {demo && <a href={demo} class="link" target="_blank" rel="noopener">Ver producto</a>}
-        {repo && <a href={repo} class="link">Ver código</a>}
+<div class:list={["proj-item", { open: abierto }]}>
+  <div class="proj-row" role="button" tabindex="0">
+    <div class="proj-num">{num}</div>
+    <div class="proj-main">
+      <div class="proj-title">{titulo}</div>
+      <div class="proj-tags">
+        {tecnologias.map((t) => <span class="proj-tag">{t}</span>)}
+      </div>
     </div>
-</article>
+    <div class="proj-sign">{abierto ? "–" : "+"}</div>
+  </div>
+  <div class="proj-detail" hidden={!abierto}>
+    <div class="proj-line"></div>
+    <div class="proj-body">
+      <p class="proj-desc">{descripcion}</p>
+      {rol && <div class="proj-role">ROL — {rol}</div>}
+      {demo && <a href={demo} target="_blank" rel="noopener" class="proj-link">Ver producto ↗</a>}
+    </div>
+  </div>
+</div>
 
 <style>
-  .card {
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 1.5rem;
-    background: white;
+  .proj-item { border-bottom: 1px solid var(--color-neutral-800); }
+  .proj-row {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr) 24px;
+    gap: var(--space-4);
+    align-items: start;
+    padding: var(--space-8) var(--space-3);
+    cursor: pointer;
+    transition: background 140ms ease;
   }
-  .card h3 { 
-    margin: 0 0 0.5rem; 
+  .proj-row:hover { background: var(--color-neutral-900); }
+  .proj-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-neutral-600);
+    padding-top: 6px;
   }
-  .rol {
-    margin: 0 0 0.75rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #2563eb;
+  .proj-main { display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
+  .proj-title {
+    font-size: 19px;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    color: var(--color-neutral-300);
+    text-wrap: pretty;
   }
-  .card p { 
-    color: #555; 
+  .proj-item.open .proj-title { color: var(--color-neutral-100); }
+  .proj-tags { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .proj-tag {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: var(--color-neutral-400);
+    border: 1px solid var(--color-neutral-800);
+    border-radius: var(--radius-sm);
+    padding: 3px 7px;
   }
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
+  .proj-sign {
+    font-family: var(--font-mono);
+    font-size: 15px;
+    color: var(--color-accent-400);
+    text-align: right;
+    padding-top: 3px;
   }
-  .tags li {
-    background: #eff6ff;
-    color: #2563eb;
-    font-size: 0.8rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 999px;
+  .proj-detail {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: var(--space-4);
+    padding: 0 var(--space-3) var(--space-8);
   }
-  .links {
-    display: flex;
-    gap: 1rem;
+  .proj-detail[hidden] { display: none !important; }
+  .proj-line { border-left: 1px solid var(--color-accent-700); margin-left: 5px; }
+  .proj-body { display: flex; flex-direction: column; gap: var(--space-4); max-width: 68ch; }
+  .proj-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-neutral-300);
+    margin: 0;
+    text-wrap: pretty;
   }
-  .link { 
-    color: #2563eb; 
-    text-decoration: none; 
-    font-weight: 600; 
+  .proj-role {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--color-neutral-500);
   }
+  .proj-link { font-size: 13.5px; width: fit-content; }
 </style>
