@@ -20,6 +20,9 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <SEO title={title} description={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" />
   </head>
   <body>
     <NavBar />
@@ -28,13 +31,126 @@ const {
 </html>
 
 <style is:global>
+  :root {
+    --color-bg: #161826;
+    --color-surface: #232532;
+    --color-text: #e9e9ed;
+
+    --color-neutral-100: #f3f5fe;
+    --color-neutral-200: #e4e7f5;
+    --color-neutral-300: #cfd3e5;
+    --color-neutral-400: #b2b6ca;
+    --color-neutral-500: #9397ab;
+    --color-neutral-600: #75798c;
+    --color-neutral-700: #595d6c;
+    --color-neutral-800: #3f424d;
+    --color-neutral-900: #292b31;
+
+    --color-accent: #94a3b8;
+    --color-accent-100: #f1f5f9;
+    --color-accent-200: #e2e8f0;
+    --color-accent-300: #cbd5e1;
+    --color-accent-400: #94a3b8;
+    --color-accent-500: #64748b;
+    --color-accent-600: #475569;
+    --color-accent-700: #3a4657;
+    --color-accent-800: #2c3542;
+    --color-accent-900: #1f2530;
+
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --space-1: 2.8px;
+    --space-2: 5.6px;
+    --space-3: 8.4px;
+    --space-4: 11.2px;
+    --space-6: 16.8px;
+    --space-8: 22.4px;
+
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 14px;
+  }
+
+  * , *::before, *::after { box-sizing: border-box; }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
   }
+
   body {
     margin: 0;
-    font-family: system-ui, -apple-system, sans-serif;
-    color: #1a1a1a;
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-text);
+    background:
+      radial-gradient(1100px 560px at 8% -8%, var(--color-accent-900), transparent 68%),
+      var(--color-bg);
+    min-height: 100vh;
   }
+
+  a { color: var(--color-accent); }
+  a:hover { color: var(--color-accent-300); }
+
+  @keyframes pulseDot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.25; }
+  }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    cursor: pointer; text-decoration: none;
+    font-family: var(--font-body); font-weight: 500;
+    font-size: 14px; line-height: 1.2; color: var(--color-text);
+    background: transparent; border: 1px solid transparent;
+    padding: var(--space-2) calc(var(--space-3) * 1.2);
+    border-radius: var(--radius-md);
+  }
+  .btn-primary { color: var(--color-accent); border-color: var(--color-accent); }
+  .btn-primary:hover { background: color-mix(in srgb, var(--color-accent) 12%, transparent); }
+  .btn-secondary { border-color: color-mix(in srgb, var(--color-text) 16%, transparent); }
+  .btn-secondary:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+  .btn-ghost { color: var(--color-neutral-400); padding-inline: var(--space-1); }
+  .btn-ghost:hover { background: color-mix(in srgb, var(--color-text) 6%, transparent); }
+
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 calc(var(--space-8) * 1.6);
+    box-sizing: border-box;
+  }
+  .mono { font-family: var(--font-mono); }
+
+  .section {
+    scroll-margin-top: 80px;
+    padding: calc(var(--space-8) * 2.4) 0;
+    border-top: 1px solid var(--color-neutral-800);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space-8) * 1.2);
+  }
+  .section--wide-gap { gap: calc(var(--space-8) * 1.4); }
+
+  .section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-6);
+  }
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--color-accent-300);
+  }
+  .section-title {
+    font-size: clamp(28px, 3.6vw, 42px);
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    margin: 0;
+  }
+  .section-hint { font-size: 13px; color: var(--color-neutral-500); }
 </style>
