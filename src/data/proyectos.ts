@@ -9,9 +9,9 @@ export const proyectos: Proyecto[] = [
     demo: "https://uteam.com.mx/#dev-medida",
   },
   {
-    titulo: "Integración SAP ↔ CrunchTime",
-    descripcion: "Integración freelance que sincroniza SAP Business One con CrunchTime mediante un worker de procesamiento continuo, eliminando la captura manual entre ambos sistemas y reduciendo errores de conciliación. Procesa cientos de registros al día de forma automática, sin intervención manual.",
-    tecnologias: [".NET", "SAP Service Layer", "REST API", "Worker Service", "SQL Server"],
+    titulo: "Integración SAP ↔ CrunchTime (freelance · cadena de restaurantes nacional)",
+    descripcion: "Integración freelance full-stack para una cadena de restaurantes nacional que sincroniza de forma bidireccional CrunchTime (sistema de gestión de restaurantes) con SAP Business One. Un Worker con 9 jobs programados (Quartz.NET) extrae datos desde la API de CrunchTime hacia una base intermedia en SQL Server y, aplicando tablas de equivalencia, crea automáticamente en SAP B1 las órdenes de compra, entradas de mercancía y conteos de inventario, gestionando también cancelaciones y estados. Desarrollé además un panel web en Angular (sobre una API REST) para monitorear el estado de la sincronización, disparar sincronizaciones y posteos de forma manual y generar reportes para visualizar y exportar la información. Resolví también la ejecución en producción de la DI API COM (x86) de SAP como Windows Service. El sistema eliminó la captura manual entre ambos sistemas y redujo los errores de conciliación.",
+    tecnologias: [".NET", "SAP Service Layer", "REST API", "SQL Server", "Dapper", "Worker Service", "Quartz.NET", "Angular", ],
     repo: "",
   },
   {
