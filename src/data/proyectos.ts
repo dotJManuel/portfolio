@@ -10,7 +10,7 @@ export const proyectos: Proyecto[] = [
   },
   {
     titulo: "Integración SAP ↔ CrunchTime",
-    descripcion: "Integración freelance que sincroniza SAP Business One con CrunchTime mediante un worker de procesamiento continuo, eliminando la captura manual entre ambos sistemas y reduciendo errores de conciliación. Procesa [N] registros/día de forma automática.",
+    descripcion: "Integración freelance que sincroniza SAP Business One con CrunchTime mediante un worker de procesamiento continuo, eliminando la captura manual entre ambos sistemas y reduciendo errores de conciliación. Procesa cientos de registros al día de forma automática, sin intervención manual.",
     tecnologias: [".NET", "SAP Service Layer", "REST API", "Worker Service", "SQL Server"],
     repo: "",
   },
