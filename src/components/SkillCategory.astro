@@ -1,14 +1,15 @@
 ---
 import type { CategoriaSkill } from '../data/types';
+import Loc from './Loc.astro';
 
-interface Props { 
-  skill: CategoriaSkill; 
+interface Props {
+  skill: CategoriaSkill;
 }
 const { skill } = Astro.props;
 ---
 
 <div class="skill">
-  <div class="skill-cat">{skill.categoria}</div>
+  <div class="skill-cat"><Loc en={skill.categoria.en} es={skill.categoria.es} /></div>
   <div class="skill-items">
     {skill.items.map((i) => <div class="skill-item">{i}</div>)}
   </div>

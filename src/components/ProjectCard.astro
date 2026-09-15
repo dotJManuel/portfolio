@@ -1,9 +1,11 @@
 ---
+import type { Localized } from '../data/types';
+import Loc from './Loc.astro';
 interface Props {
-  titulo: string;
-  descripcion: string;
+  titulo: Localized;
+  descripcion: Localized;
   tecnologias: string[];
-  rol?: string;
+  rol?: Localized;
   demo?: string;
   index: number;
 }
@@ -16,7 +18,7 @@ const abierto = index === 0;
   <div class="proj-row" role="button" tabindex="0">
     <div class="proj-num">{num}</div>
     <div class="proj-main">
-      <div class="proj-title">{titulo}</div>
+      <div class="proj-title"><Loc en={titulo.en} es={titulo.es} /></div>
       <div class="proj-tags">
         {tecnologias.map((t) => <span class="proj-tag">{t}</span>)}
       </div>
@@ -26,9 +28,9 @@ const abierto = index === 0;
   <div class="proj-detail" hidden={!abierto}>
     <div class="proj-line"></div>
     <div class="proj-body">
-      <p class="proj-desc">{descripcion}</p>
-      {rol && <div class="proj-role">ROL — {rol}</div>}
-      {demo && <a href={demo} target="_blank" rel="noopener" class="proj-link">Ver producto ↗</a>}
+      <p class="proj-desc"><Loc en={descripcion.en} es={descripcion.es} /></p>
+      {rol && <div class="proj-role"><Loc en="ROLE" es="ROL" /> — <Loc en={rol.en} es={rol.es} /></div>}
+      {demo && <a href={demo} target="_blank" rel="noopener" class="proj-link"><Loc en="View product ↗" es="Ver producto ↗" /></a>}
     </div>
   </div>
 </div>

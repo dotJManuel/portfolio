@@ -1,17 +1,17 @@
 ---
 import type { Certificacion } from '../data/types';
+import Loc from './Loc.astro';
 interface Props { cert: Certificacion; }
 const { cert } = Astro.props;
-const meta = `${cert.emisor} · ${cert.fecha}`;
 ---
 
 <div class="cert">
   <div class="cert-info">
     <div class="cert-name">{cert.nombre}</div>
-    <div class="cert-meta">{meta}</div>
+    <div class="cert-meta">{cert.emisor} · <Loc en={cert.fecha.en} es={cert.fecha.es} /></div>
   </div>
   {cert.url && (
-    <a href={cert.url} target="_blank" rel="noopener" class="cert-verify">Verificar →</a>
+    <a href={cert.url} target="_blank" rel="noopener" class="cert-verify"><Loc en="Verify →" es="Verificar →" /></a>
   )}
 </div>
 

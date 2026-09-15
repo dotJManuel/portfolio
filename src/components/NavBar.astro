@@ -146,15 +146,15 @@ const enlaces = [
 
   const toggle = document.querySelector<HTMLButtonElement>(".langtoggle");
   toggle?.addEventListener("click", () => {
-    const esActivo = document.documentElement.dataset.locale === "es";
-    if (esActivo) {
+    const enActivo = document.documentElement.dataset.locale === "en";
+    if (enActivo) {
       delete document.documentElement.dataset.locale;
-      document.documentElement.lang = "en";
-      localStorage.setItem("locale", "en");
-    } else {
-      document.documentElement.dataset.locale = "es";
       document.documentElement.lang = "es";
       localStorage.setItem("locale", "es");
+    } else {
+      document.documentElement.dataset.locale = "en";
+      document.documentElement.lang = "en";
+      localStorage.setItem("locale", "en");
     }
   });
 

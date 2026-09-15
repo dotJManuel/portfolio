@@ -14,14 +14,14 @@ const {
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script is:inline>
-      if (localStorage.getItem("locale") === "es") {
-        document.documentElement.dataset.locale = "es";
-        document.documentElement.lang = "es";
+      if (localStorage.getItem("locale") === "en") {
+        document.documentElement.dataset.locale = "en";
+        document.documentElement.lang = "en";
       }
     </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -100,9 +100,9 @@ const {
   a { color: var(--color-accent); }
   a:hover { color: var(--color-accent-300); }
 
-  [data-lang="es"] { display: none; }
-  [data-locale="es"] [data-lang="en"] { display: none; }
-  [data-locale="es"] [data-lang="es"] { display: inline; }
+  [data-lang="en"] { display: none; }
+  [data-locale="en"] [data-lang="es"] { display: none; }
+  [data-locale="en"] [data-lang="en"] { display: inline; }
 
   @keyframes pulseDot {
     0%, 100% { opacity: 1; }

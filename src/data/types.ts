@@ -1,28 +1,33 @@
+export interface Localized {
+  en: string;
+  es: string;
+}
+
 export interface Proyecto {
-  titulo: string;
-  descripcion: string;
+  titulo: Localized;
+  descripcion: Localized;
   tecnologias: string[];
-  rol?: string;
+  rol?: Localized;
   repo?: string;
   demo?: string;
 }
 
 export interface Experiencia {
-  puesto: string;
+  puesto: Localized;
   empresa: string;
-  periodo: string;
-  ubicacion: string;
-  logros: string[];
+  periodo: Localized;
+  ubicacion: Localized;
+  logros: Localized[];
 }
 
 export interface CategoriaSkill {
-  categoria: string;
+  categoria: Localized;
   items: string[];
 }
 
 export interface Certificacion {
   nombre: string;
   emisor: string;
-  fecha: string;
+  fecha: Localized;
   url?: string;
 }

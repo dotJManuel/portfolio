@@ -2,23 +2,23 @@ import type { CategoriaSkill } from './types';
 
 export const skills: CategoriaSkill[] = [
   {
-    categoria: "Lenguajes",
+    categoria: { en: "Languages", es: "Lenguajes" },
     items: ["C#", "Java", "JavaScript", "TypeScript", "SQL"],
   },
   {
-    categoria: "Backend",
+    categoria: { en: "Backend", es: "Backend" },
     items: [".NET / .NET Core", "ASP.NET MVC", "Spring Boot", "APIs REST/SOAP", "SignalR"],
   },
   {
-    categoria: "Bases de datos",
+    categoria: { en: "Databases", es: "Bases de datos" },
     items: ["SQL Server", "MySQL", "PostgreSQL", "EF Core", "Dapper"],
   },
   {
-    categoria: "Integraciones",
+    categoria: { en: "Integrations", es: "Integraciones" },
     items: ["SAP Business One", "DI API / DI Server", "Service Layer", "OAuth"],
   },
   {
-    categoria: "DevOps & Cloud",
+    categoria: { en: "DevOps & Cloud", es: "DevOps & Cloud" },
     items: ["Docker", "Microsoft Azure", "Git", "CI/CD"],
   },
 ];

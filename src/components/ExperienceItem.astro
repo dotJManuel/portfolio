@@ -1,7 +1,8 @@
 ---
 import type { Experiencia } from '../data/types';
-interface Props { 
-  experiencia: Experiencia; 
+import Loc from './Loc.astro';
+interface Props {
+  experiencia: Experiencia;
 }
 const { experiencia } = Astro.props;
 const { puesto, empresa, periodo, ubicacion, logros } = experiencia;
@@ -9,16 +10,16 @@ const { puesto, empresa, periodo, ubicacion, logros } = experiencia;
 
 <div class="exp">
   <div class="exp-meta">
-    <div class="exp-period">{periodo}</div>
+    <div class="exp-period"><Loc en={periodo.en} es={periodo.es} /></div>
     <div class="exp-company">{empresa}</div>
-    <div class="exp-role">{puesto}</div>
-    <div class="exp-location">{ubicacion}</div>
+    <div class="exp-role"><Loc en={puesto.en} es={puesto.es} /></div>
+    <div class="exp-location"><Loc en={ubicacion.en} es={ubicacion.es} /></div>
   </div>
   <div class="exp-logros">
     {logros.map((l) => (
       <div class="logro">
         <div class="logro-dash"></div>
-        <p class="logro-text">{l}</p>
+        <p class="logro-text"><Loc en={l.en} es={l.es} /></p>
       </div>
     ))}
   </div>
