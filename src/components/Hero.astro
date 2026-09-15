@@ -1,4 +1,6 @@
 ---
+import Loc from './Loc.astro';
+
 const linkedin = "https://www.linkedin.com/in/dotjmanuel/";
 const github = "https://github.com/dotJManuel";
 const cvUrl = "/CV.pdf";
@@ -8,39 +10,39 @@ const cvUrl = "/CV.pdf";
   <div class="hero-intro">
     <div class="status">
       <span class="status-dot"></span>
-      <span>Hidalgo, México · disponible</span>
+      <span><Loc en="Hidalgo, Mexico · available" es="Hidalgo, México · disponible" /></span>
     </div>
     <h1 class="hero-name">José Manuel<br />Hernández</h1>
     <div class="hero-roles">
-      <span>Ingeniero de Software</span>
+      <span><Loc en="Software Engineer" es="Ingeniero de Software" /></span>
       <span class="role-sep"></span>
       <span>Backend .NET</span>
       <span class="role-sep"></span>
-      <span>Integraciones y APIs</span>
+      <span><Loc en="Integrations & APIs" es="Integraciones y APIs" /></span>
     </div>
-    <p class="hero-lead">Construyo software empresarial de principio a fin: APIs y servicios en .NET, bases de datos que aguantan y plataformas que la gente usa todos los días para trabajar.</p>
+    <p class="hero-lead"><Loc en="I build enterprise software end to end: APIs and services in .NET, databases that hold up, and platforms people use every day to get work done." es="Construyo software empresarial de principio a fin: APIs y servicios en .NET, bases de datos que aguantan y plataformas que la gente usa todos los días para trabajar." /></p>
     <div class="hero-actions">
       <a href={github} target="_blank" rel="noopener" class="btn btn-primary">GitHub ↗</a>
       <a href={linkedin} target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn ↗</a>
-      <a href={cvUrl} class="btn btn-ghost hero-cv">Descargar CV</a>
+      <a href={cvUrl} class="btn btn-ghost hero-cv"><Loc en="Download CV" es="Descargar CV" /></a>
     </div>
   </div>
 
   <div class="cards">
     <div class="card">
       <div class="card-num">01</div>
-      <div class="card-title">Arquitectura backend</div>
-      <p class="card-desc">APIs y servicios en .NET sobre SQL Server: microservicios, mensajería asíncrona, autenticación y control de acceso pensados para operar años, no para una demo.</p>
+      <div class="card-title"><Loc en="Backend architecture" es="Arquitectura backend" /></div>
+      <p class="card-desc"><Loc en="APIs and services in .NET on SQL Server: microservices, asynchronous messaging, authentication and access control built to run for years, not just for a demo." es="APIs y servicios en .NET sobre SQL Server: microservicios, mensajería asíncrona, autenticación y control de acceso pensados para operar años, no para una demo." /></p>
     </div>
     <div class="card">
       <div class="card-num">02</div>
-      <div class="card-title">Productos completos</div>
-      <p class="card-desc">De la base de datos al dashboard. Plataformas SaaS en producción con clientes activos, en desarrollo y mejora continua.</p>
+      <div class="card-title"><Loc en="Complete products" es="Productos completos" /></div>
+      <p class="card-desc"><Loc en="From the database to the dashboard. SaaS platforms in production with active clients, under continuous development and improvement." es="De la base de datos al dashboard. Plataformas SaaS en producción con clientes activos, en desarrollo y mejora continua." /></p>
     </div>
     <div class="card">
       <div class="card-num">03</div>
-      <div class="card-title">Sistemas que se hablan</div>
-      <p class="card-desc">Integraciones REST y SOAP, workers de procesamiento continuo y tiempo real entre plataformas que nunca fueron hechas para convivir.</p>
+      <div class="card-title"><Loc en="Systems that talk to each other" es="Sistemas que se hablan" /></div>
+      <p class="card-desc"><Loc en="REST and SOAP integrations, continuous-processing workers and real-time sync between platforms that were never meant to coexist." es="Integraciones REST y SOAP, workers de procesamiento continuo y tiempo real entre plataformas que nunca fueron hechas para convivir." /></p>
     </div>
   </div>
 </section>
