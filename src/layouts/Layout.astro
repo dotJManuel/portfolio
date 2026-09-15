@@ -14,10 +14,16 @@ const {
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>
+      if (localStorage.getItem("locale") === "es") {
+        document.documentElement.dataset.locale = "es";
+        document.documentElement.lang = "es";
+      }
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <SEO title={title} description={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -93,6 +99,10 @@ const {
 
   a { color: var(--color-accent); }
   a:hover { color: var(--color-accent-300); }
+
+  [data-lang="es"] { display: none; }
+  [data-locale="es"] [data-lang="en"] { display: none; }
+  [data-locale="es"] [data-lang="es"] { display: inline; }
 
   @keyframes pulseDot {
     0%, 100% { opacity: 1; }
