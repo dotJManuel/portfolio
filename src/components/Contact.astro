@@ -1,4 +1,6 @@
 ---
+import Loc from './Loc.astro';
+
 const correo = "dotjmanuel@gmail.com";
 const telefono = "+52 771 315 9262";
 const tel = "tel:" + telefono.replace(/[^+0-9]/g, "");
@@ -8,23 +10,23 @@ const linkedin = "https://www.linkedin.com/in/dotjmanuel/";
 <section id="contacto" class="contact">
   <div class="section-head">
     <span class="section-num">05</span>
-    <h2 class="section-title">Contacto</h2>
+    <h2 class="section-title"><Loc en="Contact" es="Contacto" /></h2>
   </div>
-  <p class="contact-lead">¿Tienes un proyecto o una vacante? Hablemos.</p>
+  <p class="contact-lead"><Loc en="Have a project or a role in mind? Let's talk." es="¿Tienes un proyecto o una vacante? Hablemos." /></p>
   <div class="contact-list">
     <a class="contact-row" href={`mailto:${correo}`}>
-      <span class="contact-label">Correo</span>
+      <span class="contact-label"><Loc en="Email" es="Correo" /></span>
       <span class="contact-value contact-value--wrap">{correo}</span>
       <span class="contact-arrow">↗</span>
     </a>
     <a class="contact-row" href={tel}>
-      <span class="contact-label">Teléfono</span>
+      <span class="contact-label"><Loc en="Phone" es="Teléfono" /></span>
       <span class="contact-value">{telefono}</span>
       <span class="contact-arrow">↗</span>
     </a>
     <a class="contact-row" href={linkedin} target="_blank" rel="noopener">
       <span class="contact-label">LinkedIn</span>
-      <span class="contact-value">Perfil profesional</span>
+      <span class="contact-value"><Loc en="Professional profile" es="Perfil profesional" /></span>
       <span class="contact-arrow">↗</span>
     </a>
     <a class="contact-row" href="https://github.com/dotJManuel" target="_blank" rel="noopener">
@@ -34,7 +36,7 @@ const linkedin = "https://www.linkedin.com/in/dotjmanuel/";
     </a>
   </div>
   <div class="contact-foot">
-    <span>José Manuel Hernández · Hidalgo, México · GMT-6</span>
+    <span><Loc en="José Manuel Hernández · Hidalgo, Mexico · GMT-6" es="José Manuel Hernández · Hidalgo, México · GMT-6" /></span>
     <span id="reloj"></span>
   </div>
 </section>
@@ -102,10 +104,12 @@ const linkedin = "https://www.linkedin.com/in/dotjmanuel/";
   function tick() {
     if (!el) return;
     try {
-      const s = new Intl.DateTimeFormat("es-MX", { timeZone: "America/Mexico_City", hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date());
-      el.textContent = s + " hora local";
+      const es = document.documentElement.dataset.locale === "es";
+      const s = new Intl.DateTimeFormat(es ? "es-MX" : "en-US", { timeZone: "America/Mexico_City", hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date());
+      el.textContent = s + (es ? " hora local" : " local time");
     } catch (e) { el.textContent = ""; }
   }
   tick();
   setInterval(tick, 30000);
+  document.querySelector(".langtoggle")?.addEventListener("click", tick);
 </script>
