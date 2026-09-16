@@ -34,28 +34,84 @@ const {
     <NavBar />
     <slot />
     <div id="lightbox" class="lightbox" hidden>
-      <img id="lightbox-img" class="lightbox-img" src="" alt="" />
+      <button id="lb-close" class="lb-btn lb-close" type="button" aria-label="Cerrar">×</button>
+      <div id="lb-stage" class="lb-stage">
+        <img id="lightbox-img" class="lightbox-img" src="" alt="" draggable="false" />
+      </div>
+      <div class="lb-controls">
+        <button id="lb-out" class="lb-btn" type="button" aria-label="Alejar">−</button>
+        <button id="lb-reset" class="lb-btn lb-reset" type="button" aria-label="Restablecer zoom">100%</button>
+        <button id="lb-in" class="lb-btn" type="button" aria-label="Acercar">+</button>
+      </div>
     </div>
   </body>
 </html>
 
 <script>
   const box = document.getElementById("lightbox");
-  const boxImg = document.getElementById("lightbox-img") as HTMLImageElement | null;
-  if (box && boxImg) {
-    const close = () => { box.hidden = true; boxImg.src = ""; };
+  const stage = document.getElementById("lb-stage");
+  const img = document.getElementById("lightbox-img") as HTMLImageElement | null;
+  const reset = document.getElementById("lb-reset");
+
+  if (box && stage && img && reset) {
+    let z = 1, tx = 0, ty = 0;
+    const MIN = 0.5, MAX = 5;
+
+    const apply = () => {
+      img.style.transform = `translate(${tx}px, ${ty}px) scale(${z})`;
+      reset.textContent = Math.round(z * 100) + "%";
+      img.style.cursor = z > 1 ? "grab" : "default";
+    };
+    const setZoom = (next: number) => {
+      z = Math.min(MAX, Math.max(MIN, Math.round(next * 100) / 100));
+      if (z === 1) { tx = 0; ty = 0; }
+      apply();
+    };
+    const open = (src: string, alt: string) => {
+      img.src = src;
+      img.alt = alt;
+      z = 1; tx = 0; ty = 0; apply();
+      box.hidden = false;
+    };
+    const close = () => { box.hidden = true; img.src = ""; };
+
     document.addEventListener("click", (e) => {
       const t = e.target as HTMLElement;
       if (t instanceof HTMLImageElement && t.classList.contains("zoomable")) {
-        boxImg.src = t.currentSrc || t.src;
-        boxImg.alt = t.alt || "";
-        box.hidden = false;
-      } else if (t === box || t === boxImg) {
-        close();
+        open(t.currentSrc || t.src, t.alt || "");
       }
     });
+
+    document.getElementById("lb-close")?.addEventListener("click", close);
+    document.getElementById("lb-in")?.addEventListener("click", () => setZoom(z + 0.15));
+    document.getElementById("lb-out")?.addEventListener("click", () => setZoom(z - 0.15));
+    reset.addEventListener("click", () => setZoom(1));
+    box.addEventListener("click", (e) => { if (e.target === box || e.target === stage) close(); });
+
+    stage.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      setZoom(z + (e.deltaY < 0 ? 0.1 : -0.1));
+    }, { passive: false });
+
+    let dragging = false, sx = 0, sy = 0;
+    img.addEventListener("pointerdown", (e) => {
+      if (z <= 1) return;
+      dragging = true; sx = e.clientX - tx; sy = e.clientY - ty;
+      img.setPointerCapture(e.pointerId); img.style.cursor = "grabbing";
+    });
+    img.addEventListener("pointermove", (e) => {
+      if (!dragging) return;
+      tx = e.clientX - sx; ty = e.clientY - sy; apply();
+    });
+    const endDrag = () => { dragging = false; if (z > 1) img.style.cursor = "grab"; };
+    img.addEventListener("pointerup", endDrag);
+    img.addEventListener("pointercancel", endDrag);
+
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !box.hidden) close();
+      if (box.hidden) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "+" || e.key === "=") setZoom(z + 0.15);
+      else if (e.key === "-") setZoom(z - 0.15);
     });
   }
 </script>
@@ -136,21 +192,66 @@ const {
     align-items: center;
     justify-content: center;
     padding: calc(var(--space-8) * 1.4);
-    background: color-mix(in srgb, #000 82%, transparent);
+    background: color-mix(in srgb, #000 84%, transparent);
     backdrop-filter: blur(4px);
-    cursor: zoom-out;
   }
   .lightbox[hidden] { display: none; }
+  .lb-stage {
+    max-width: 94vw;
+    max-height: 88vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .lightbox-img {
-    max-width: 96vw;
-    max-height: 92vh;
+    max-width: 94vw;
+    max-height: 88vh;
     width: auto;
     height: auto;
+    transform-origin: center center;
+    transition: transform 90ms ease-out;
     border: 1px solid var(--color-neutral-700);
     border-radius: var(--radius-sm);
     background: var(--color-bg);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    touch-action: none;
+    user-select: none;
   }
+  .lb-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    padding: 0 var(--space-3);
+    font-family: var(--font-mono);
+    font-size: 16px;
+    line-height: 1;
+    color: var(--color-neutral-200);
+    background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+    border: 1px solid var(--color-neutral-700);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: background 140ms ease, color 140ms ease, border-color 140ms ease;
+  }
+  .lb-btn:hover { background: var(--color-accent-800); color: var(--color-accent-100); border-color: var(--color-accent-600); }
+  .lb-close {
+    position: fixed;
+    top: calc(var(--space-8) * 0.9);
+    right: calc(var(--space-8) * 0.9);
+    font-size: 22px;
+  }
+  .lb-controls {
+    position: fixed;
+    bottom: calc(var(--space-8) * 1.1);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .lb-reset { font-size: 12px; letter-spacing: 0.04em; min-width: 58px; }
 
   @keyframes pulseDot {
     0%, 100% { opacity: 1; }
