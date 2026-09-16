@@ -88,24 +88,35 @@ export const proyectos: Proyecto[] = [
     ],
     imagenes: [
       {
-        src: "/proyectos/crunchtime/panel.png",
+        src: "/proyectos/crunchtime/panel.jpeg",
         caption: {
-          en: "Angular panel — sync status and manual run per document type.",
-          es: "Panel Angular — estado de sincronización y ejecución manual por tipo de documento.",
+          en: "Admin panel — manual sync per document type.",
+          es: "Panel de administración — sincronización manual por tipo de documento.",
         },
       },
       {
-        src: "/proyectos/crunchtime/reportes.png",
+        src: "/proyectos/crunchtime/conversionUnidades.png",
         caption: {
-          en: "Reports and sync logs, with export.",
-          es: "Reportes y logs de sincronización, con exportación.",
+          en: "Unit conversion — factors and equivalences between CrunchTime and SAP units.",
+          es: "Conversión de unidades — factores y equivalencias entre unidades de CrunchTime y SAP.",
+        },
+      },
+    ],
+    diagramas: [
+      {
+        srcEs: "/proyectos/crunchtime/arquitectura-es.svg",
+        srcEn: "/proyectos/crunchtime/arquitectura-en.svg",
+        caption: {
+          en: "System architecture: CrunchTime → .NET integration platform → SQL Server → SAP B1.",
+          es: "Arquitectura del sistema: CrunchTime → plataforma de integración .NET → SQL Server → SAP B1.",
         },
       },
       {
-        src: "/proyectos/crunchtime/arquitectura.png",
+        srcEs: "/proyectos/crunchtime/posteo-es.svg",
+        srcEn: "/proyectos/crunchtime/posteo-en.svg",
         caption: {
-          en: "Architecture: CrunchTime API → Worker (Quartz) → SQL Server → SAP B1 (DI API).",
-          es: "Arquitectura: API CrunchTime → Worker (Quartz) → SQL Server → SAP B1 (DI API).",
+          en: "Posting flow SQL → SAP with statuses, unit conversion and automatic retries.",
+          es: "Flujo de posteo SQL → SAP con estados, conversión de unidades y reintentos automáticos.",
         },
       },
     ],

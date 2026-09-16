@@ -1,5 +1,5 @@
 ---
-import type { Localized, ProyectoImagen } from '../data/types';
+import type { Localized, ProyectoImagen, ProyectoDiagrama } from '../data/types';
 import Loc from './Loc.astro';
 interface Props {
   titulo: Localized;
@@ -7,11 +7,12 @@ interface Props {
   tecnologias: string[];
   destacados?: Localized[];
   imagenes?: ProyectoImagen[];
+  diagramas?: ProyectoDiagrama[];
   rol?: Localized;
   demo?: string;
   index: number;
 }
-const { titulo, descripcion, tecnologias, destacados, imagenes, rol, demo, index } = Astro.props as Props;
+const { titulo, descripcion, tecnologias, destacados, imagenes, diagramas, rol, demo, index } = Astro.props as Props;
 const num = String(index + 1).padStart(2, "0");
 const abierto = index === 0;
 ---
@@ -50,6 +51,19 @@ const abierto = index === 0;
               />
               <div class="shot-ph"><span class="shot-ph-file">{img.src}</span></div>
               <figcaption class="shot-cap"><Loc en={img.caption.en} es={img.caption.es} /></figcaption>
+            </figure>
+          ))}
+        </div>
+      )}
+      {diagramas && diagramas.length > 0 && (
+        <div class="proj-diagrams">
+          {diagramas.map((d) => (
+            <figure class="proj-diagram">
+              <div class="diagram-frame">
+                <img class="diagram-img" data-lang="en" src={d.srcEn} alt={d.caption.en} loading="lazy" />
+                <img class="diagram-img" data-lang="es" src={d.srcEs} alt={d.caption.es} loading="lazy" />
+              </div>
+              <figcaption class="shot-cap"><Loc en={d.caption.en} es={d.caption.es} /></figcaption>
             </figure>
           ))}
         </div>
@@ -112,12 +126,13 @@ const abierto = index === 0;
   }
   .proj-detail[hidden] { display: none !important; }
   .proj-line { border-left: 1px solid var(--color-accent-700); margin-left: 5px; }
-  .proj-body { display: flex; flex-direction: column; gap: var(--space-4); max-width: 68ch; }
+  .proj-body { display: flex; flex-direction: column; gap: var(--space-4); }
   .proj-desc {
     font-size: 15px;
     line-height: 1.7;
     color: var(--color-neutral-300);
     margin: 0;
+    max-width: 68ch;
     text-wrap: pretty;
   }
   .proj-highlights {
@@ -126,6 +141,7 @@ const abierto = index === 0;
     gap: var(--space-3);
     margin: 0;
     padding: 0;
+    max-width: 68ch;
     list-style: none;
   }
   .proj-highlight {
@@ -183,6 +199,22 @@ const abierto = index === 0;
     color: var(--color-neutral-500);
     text-wrap: pretty;
   }
+  .proj-diagrams {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-top: var(--space-2);
+  }
+  .proj-diagram { margin: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+  .diagram-frame {
+    line-height: 0;
+    border: 1px solid var(--color-neutral-800);
+    border-radius: var(--radius-sm);
+    background: var(--color-neutral-900);
+    padding: var(--space-6);
+    overflow-x: auto;
+  }
+  .diagram-img { width: 100%; min-width: 640px; height: auto; }
   .proj-role {
     font-family: var(--font-mono);
     font-size: 11px;

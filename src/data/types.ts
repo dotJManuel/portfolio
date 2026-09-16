@@ -8,12 +8,19 @@ export interface ProyectoImagen {
   caption: Localized;
 }
 
+export interface ProyectoDiagrama {
+  srcEs: string;
+  srcEn: string;
+  caption: Localized;
+}
+
 export interface Proyecto {
   titulo: Localized;
   descripcion: Localized;
   tecnologias: string[];
   destacados?: Localized[];
   imagenes?: ProyectoImagen[];
+  diagramas?: ProyectoDiagrama[];
   rol?: Localized;
   repo?: string;
   demo?: string;
