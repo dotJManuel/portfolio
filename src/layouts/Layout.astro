@@ -33,8 +33,32 @@ const {
   <body>
     <NavBar />
     <slot />
+    <div id="lightbox" class="lightbox" hidden>
+      <img id="lightbox-img" class="lightbox-img" src="" alt="" />
+    </div>
   </body>
 </html>
+
+<script>
+  const box = document.getElementById("lightbox");
+  const boxImg = document.getElementById("lightbox-img") as HTMLImageElement | null;
+  if (box && boxImg) {
+    const close = () => { box.hidden = true; boxImg.src = ""; };
+    document.addEventListener("click", (e) => {
+      const t = e.target as HTMLElement;
+      if (t instanceof HTMLImageElement && t.classList.contains("zoomable")) {
+        boxImg.src = t.currentSrc || t.src;
+        boxImg.alt = t.alt || "";
+        box.hidden = false;
+      } else if (t === box || t === boxImg) {
+        close();
+      }
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !box.hidden) close();
+    });
+  }
+</script>
 
 <style is:global>
   :root {
@@ -103,6 +127,30 @@ const {
   [data-lang="en"] { display: none; }
   [data-locale="en"] [data-lang="es"] { display: none; }
   [data-locale="en"] [data-lang="en"] { display: inline; }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: calc(var(--space-8) * 1.4);
+    background: color-mix(in srgb, #000 82%, transparent);
+    backdrop-filter: blur(4px);
+    cursor: zoom-out;
+  }
+  .lightbox[hidden] { display: none; }
+  .lightbox-img {
+    max-width: 96vw;
+    max-height: 92vh;
+    width: auto;
+    height: auto;
+    border: 1px solid var(--color-neutral-700);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
 
   @keyframes pulseDot {
     0%, 100% { opacity: 1; }
