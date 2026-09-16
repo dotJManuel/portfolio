@@ -7,10 +7,51 @@ export const proyectos: Proyecto[] = [
       es: "PROYECTIA — Plataforma de gestión empresarial (SaaS)",
     },
     descripcion: {
-      en: "SaaS product in production with an active client. Custom modular ERP that centralizes CRM, electronic invoicing, expenses, travel expenses, payroll and projects, with real-time dashboards. Ongoing development and improvement.",
-      es: "Producto SaaS en producción con cliente activo. ERP modular a la medida que centraliza CRM, facturación electrónica, gastos, viáticos, nómina y proyectos, con dashboards en tiempo real. Desarrollo y mejora continua.",
+      en: "SaaS ERP in production with an active client. A modular platform in ASP.NET Core 8 that centralizes CRM, electronic invoicing, expense and travel reports, payroll, HR, projects and inventory, with real-time dashboards and budgets by cost center. Built over 50+ controllers on a multi-company data layer, under ongoing development and improvement.",
+      es: "ERP SaaS en producción con cliente activo. Plataforma modular en ASP.NET Core 8 que centraliza CRM, facturación electrónica, comprobación de gastos y viáticos, nómina, RR.HH., proyectos e inventario, con dashboards en tiempo real y presupuestos por centro de costos. Construida sobre más de 50 controllers y una capa de datos multiempresa, en desarrollo y mejora continua.",
     },
-    tecnologias: ["ASP.NET Core 8", "Dapper", "SQL Server", "JWT + Google OAuth"],
+    tecnologias: ["ASP.NET Core 8", "Dapper", "SQL Server", "AutoMapper", "JWT + Google OAuth", "Serilog"],
+    destacados: [
+      {
+        en: "Modular architecture with 50+ controllers covering CRM, invoicing, payroll, HR, projects and inventory.",
+        es: "Arquitectura modular con más de 50 controllers: CRM, facturación, nómina, RR.HH., proyectos e inventario.",
+      },
+      {
+        en: "Multi-company data layer that consolidates several entities into unified reports and dashboards.",
+        es: "Capa de datos multiempresa que consolida varias sociedades en reportes y dashboards unificados.",
+      },
+      {
+        en: "Authentication with JWT + refresh tokens and Google OAuth, plus Google Calendar integration.",
+        es: "Autenticación con JWT + refresh tokens y Google OAuth, más integración con Google Calendar.",
+      },
+      {
+        en: "Data access with Dapper over SQL Server, tuned for real-time dashboards and KPIs.",
+        es: "Acceso a datos con Dapper sobre SQL Server, afinado para dashboards y KPIs en tiempo real.",
+      },
+    ],
+    imagenes: [
+      {
+        src: "/proyectos/proyectia/dashboard.png",
+        caption: {
+          en: "Real-time dashboard with KPIs and cost-center budgets.",
+          es: "Dashboard en tiempo real con KPIs y presupuestos por centro de costos.",
+        },
+      },
+      {
+        src: "/proyectos/proyectia/crm.png",
+        caption: {
+          en: "CRM — sales pipeline and opportunities board.",
+          es: "CRM — pipeline de ventas y tablero de oportunidades.",
+        },
+      },
+      {
+        src: "/proyectos/proyectia/home.png",
+        caption: {
+          en: "Home — general task management across the platform.",
+          es: "Home — gestión general de tareas de la plataforma.",
+        },
+      },
+    ],
     rol: {
       en: "Full-stack analyst and developer",
       es: "Analista y desarrollador full-stack",
@@ -23,10 +64,51 @@ export const proyectos: Proyecto[] = [
       es: "Integración SAP ↔ CrunchTime (freelance · cadena de restaurantes nacional)",
     },
     descripcion: {
-      en: "Full-stack freelance integration for a national restaurant chain that bidirectionally syncs CrunchTime (a restaurant management system) with SAP Business One. A Worker with 9 scheduled jobs (Quartz.NET) pulls data from the CrunchTime API into an intermediate SQL Server database and, applying mapping tables, automatically creates purchase orders, goods receipts and inventory counts in SAP B1, also handling cancellations and statuses. I also built an Angular web panel (over a REST API) to monitor sync status, trigger syncs and postings manually, and generate reports to view and export the data. I also solved running SAP's DI API COM (x86) in production as a Windows Service. The system eliminated manual data entry between both systems and reduced reconciliation errors.",
-      es: "Integración freelance full-stack para una cadena de restaurantes nacional que sincroniza de forma bidireccional CrunchTime (sistema de gestión de restaurantes) con SAP Business One. Un Worker con 9 jobs programados (Quartz.NET) extrae datos desde la API de CrunchTime hacia una base intermedia en SQL Server y, aplicando tablas de equivalencia, crea automáticamente en SAP B1 las órdenes de compra, entradas de mercancía y conteos de inventario, gestionando también cancelaciones y estados. Desarrollé además un panel web en Angular (sobre una API REST) para monitorear el estado de la sincronización, disparar sincronizaciones y posteos de forma manual y generar reportes para visualizar y exportar la información. Resolví también la ejecución en producción de la DI API COM (x86) de SAP como Windows Service. El sistema eliminó la captura manual entre ambos sistemas y redujo los errores de conciliación.",
+      en: "Full-stack freelance integration for a national restaurant chain that bidirectionally syncs CrunchTime (restaurant management) with SAP Business One. A .NET Worker with 10 scheduled Quartz jobs pulls data from the CrunchTime REST API (typed clients with Refit) into an intermediate SQL Server database and, applying mapping tables, automatically creates purchase orders, goods receipts and inventory counts in SAP B1 through the DI API, handling cancellations and statuses. I built an Angular panel over a REST API to monitor sync status, trigger syncs and postings manually and generate reports. I also got SAP's DI API COM (x86) running in production as a Windows Service. It eliminated manual data entry between systems and reduced reconciliation errors.",
+      es: "Integración freelance full-stack para una cadena nacional de restaurantes que sincroniza de forma bidireccional CrunchTime (gestión de restaurantes) con SAP Business One. Un Worker en .NET con 10 jobs programados (Quartz) extrae datos de la API REST de CrunchTime (clientes tipados con Refit) hacia una base intermedia en SQL Server y, aplicando tablas de equivalencia, crea automáticamente en SAP B1 las órdenes de compra, entradas de mercancía y conteos de inventario mediante la DI API, gestionando cancelaciones y estados. Desarrollé un panel en Angular sobre una API REST para monitorear el estado de la sincronización, disparar sincronizaciones y posteos de forma manual y generar reportes. Además dejé corriendo en producción la DI API COM (x86) de SAP como Windows Service. Eliminó la captura manual entre sistemas y redujo los errores de conciliación.",
     },
-    tecnologias: [".NET", "SAP Service Layer", "REST API", "SQL Server", "Dapper", "Worker Service", "Quartz.NET", "Angular", ],
+    tecnologias: [".NET", "SAP DI API", "Refit", "Quartz.NET", "Worker Service", "SQL Server", "Dapper", "Angular"],
+    destacados: [
+      {
+        en: "Bidirectional sync between CrunchTime and SAP B1 with mapping tables and idempotency to avoid duplicate documents.",
+        es: "Sincronización bidireccional CrunchTime ↔ SAP B1 con tablas de equivalencia e idempotencia para evitar documentos duplicados.",
+      },
+      {
+        en: "Worker with 10 Quartz jobs running as a Windows Service, with Serilog logging.",
+        es: "Worker con 10 jobs de Quartz corriendo como Windows Service, con logging en Serilog.",
+      },
+      {
+        en: "Typed CrunchTime API clients with Refit; SAP writes through the DI API (COM, x86).",
+        es: "Clientes tipados de la API de CrunchTime con Refit; escritura en SAP mediante la DI API (COM, x86).",
+      },
+      {
+        en: "Angular panel over a REST API for monitoring, manual syncs/postings and reporting.",
+        es: "Panel en Angular sobre API REST para monitoreo, sincronizaciones/posteos manuales y reportes.",
+      },
+    ],
+    imagenes: [
+      {
+        src: "/proyectos/crunchtime/panel.png",
+        caption: {
+          en: "Angular panel — sync status and manual run per document type.",
+          es: "Panel Angular — estado de sincronización y ejecución manual por tipo de documento.",
+        },
+      },
+      {
+        src: "/proyectos/crunchtime/reportes.png",
+        caption: {
+          en: "Reports and sync logs, with export.",
+          es: "Reportes y logs de sincronización, con exportación.",
+        },
+      },
+      {
+        src: "/proyectos/crunchtime/arquitectura.png",
+        caption: {
+          en: "Architecture: CrunchTime API → Worker (Quartz) → SQL Server → SAP B1 (DI API).",
+          es: "Arquitectura: API CrunchTime → Worker (Quartz) → SQL Server → SAP B1 (DI API).",
+        },
+      },
+    ],
     repo: "",
   },
   {

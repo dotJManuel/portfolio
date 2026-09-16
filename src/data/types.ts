@@ -3,10 +3,17 @@ export interface Localized {
   es: string;
 }
 
+export interface ProyectoImagen {
+  src: string;
+  caption: Localized;
+}
+
 export interface Proyecto {
   titulo: Localized;
   descripcion: Localized;
   tecnologias: string[];
+  destacados?: Localized[];
+  imagenes?: ProyectoImagen[];
   rol?: Localized;
   repo?: string;
   demo?: string;
