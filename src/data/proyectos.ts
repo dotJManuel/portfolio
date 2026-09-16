@@ -122,27 +122,4 @@ export const proyectos: Proyecto[] = [
     ],
     repo: "",
   },
-  {
-    titulo: {
-      en: "Sales CRM",
-      es: "CRM de Ventas",
-    },
-    descripcion: {
-      en: "System to centralize the sales pipeline and automate reports, cutting 10 hours of manual work per week.",
-      es: "Sistema para centralizar el pipeline de ventas y automatizar reportes, reduciendo 10 horas semanales de trabajo manual.",
-    },
-    tecnologias: ["Angular", "ASP.NET Core", "SQL Server", "JWT"],
-    repo: "",
-  },
-  {
-    titulo: {
-      en: "Logistics SaaS Platform",
-      es: "Plataforma SaaS de Logística",
-    },
-    descripcion: {
-      en: "Microservices architecture with asynchronous messaging and real-time shipment tracking.",
-      es: "Arquitectura de microservicios con mensajería asíncrona y tracking de envíos en tiempo real.",
-    },
-    tecnologias: [".NET Core", "RabbitMQ", "SignalR", "Ocelot"],
-  },
 ];
