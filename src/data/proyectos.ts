@@ -106,6 +106,8 @@ export const proyectos: Proyecto[] = [
       {
         srcEs: "/proyectos/crunchtime/arquitectura-es.svg",
         srcEn: "/proyectos/crunchtime/arquitectura-en.svg",
+        srcEsLight: "/proyectos/crunchtime/arquitectura-es-light.svg",
+        srcEnLight: "/proyectos/crunchtime/arquitectura-en-light.svg",
         caption: {
           en: "System architecture: CrunchTime → .NET integration platform → SQL Server → SAP B1.",
           es: "Arquitectura del sistema: CrunchTime → plataforma de integración .NET → SQL Server → SAP B1.",
@@ -114,6 +116,8 @@ export const proyectos: Proyecto[] = [
       {
         srcEs: "/proyectos/crunchtime/posteo-es.svg",
         srcEn: "/proyectos/crunchtime/posteo-en.svg",
+        srcEsLight: "/proyectos/crunchtime/posteo-es-light.svg",
+        srcEnLight: "/proyectos/crunchtime/posteo-en-light.svg",
         caption: {
           en: "Posting flow SQL → SAP with statuses, unit conversion and automatic retries.",
           es: "Flujo de posteo SQL → SAP con estados, conversión de unidades y reintentos automáticos.",

@@ -23,6 +23,9 @@ const {
         document.documentElement.dataset.locale = "en";
         document.documentElement.lang = "en";
       }
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.dataset.theme = "light";
+      }
     </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <SEO title={title} description={description} />
@@ -158,6 +161,33 @@ const {
     --radius-lg: 14px;
   }
 
+  :root[data-theme="light"] {
+    --color-bg: #f5f7fb;
+    --color-surface: #ffffff;
+    --color-text: #1b1d26;
+
+    --color-neutral-100: #1b1d26;
+    --color-neutral-200: #2b2e3a;
+    --color-neutral-300: #3f424d;
+    --color-neutral-400: #595d6c;
+    --color-neutral-500: #75798c;
+    --color-neutral-600: #9397ab;
+    --color-neutral-700: #cfd3e5;
+    --color-neutral-800: #e4e7ec;
+    --color-neutral-900: #eef1f7;
+
+    --color-accent: #475569;
+    --color-accent-100: #1f2530;
+    --color-accent-200: #2c3542;
+    --color-accent-300: #3a4657;
+    --color-accent-400: #475569;
+    --color-accent-500: #64748b;
+    --color-accent-600: #94a3b8;
+    --color-accent-700: #cbd5e1;
+    --color-accent-800: #e2e8f0;
+    --color-accent-900: #eef2f8;
+  }
+
   * , *::before, *::after { box-sizing: border-box; }
 
   html {
@@ -183,6 +213,18 @@ const {
   [data-lang="en"] { display: none; }
   [data-locale="en"] [data-lang="es"] { display: none; }
   [data-locale="en"] [data-lang="en"] { display: inline; }
+
+  .t-moon { display: none; }
+  [data-theme="light"] .t-sun { display: none; }
+  [data-theme="light"] .t-moon { display: inline; }
+
+  .diagram-img { display: none; }
+  :root:not([data-theme="light"]):not([data-locale="en"]) .diagram-img[data-diag-theme="dark"][data-diag-lang="es"],
+  :root:not([data-theme="light"])[data-locale="en"] .diagram-img[data-diag-theme="dark"][data-diag-lang="en"],
+  :root[data-theme="light"]:not([data-locale="en"]) .diagram-img[data-diag-theme="light"][data-diag-lang="es"],
+  :root[data-theme="light"][data-locale="en"] .diagram-img[data-diag-theme="light"][data-diag-lang="en"] {
+    display: block;
+  }
 
   .lightbox {
     position: fixed;

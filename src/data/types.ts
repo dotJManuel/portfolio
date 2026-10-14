@@ -11,6 +11,8 @@ export interface ProyectoImagen {
 export interface ProyectoDiagrama {
   srcEs: string;
   srcEn: string;
+  srcEsLight: string;
+  srcEnLight: string;
   caption: Localized;
 }
 

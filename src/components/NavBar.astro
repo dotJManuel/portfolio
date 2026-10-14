@@ -24,6 +24,15 @@ const enlaces = [
       <button type="button" class="langtoggle" aria-label="Toggle language">
         <span data-lang="en">ES</span><span data-lang="es">EN</span>
       </button>
+      <button type="button" class="themetoggle" aria-label="Toggle theme">
+        <svg class="t-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+        </svg>
+        <svg class="t-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
     </nav>
   </div>
 </header>
@@ -85,7 +94,7 @@ const enlaces = [
   }
   .navlink.active { color: var(--color-accent-200); }
   .navlink:hover { background: var(--color-accent-900); color: var(--color-accent-200); }
-  .langtoggle {
+  .langtoggle, .themetoggle {
     font-family: var(--font-mono);
     font-size: 11px;
     letter-spacing: 0.14em;
@@ -98,7 +107,8 @@ const enlaces = [
     cursor: pointer;
     transition: color 140ms ease, background 140ms ease, border-color 140ms ease;
   }
-  .langtoggle:hover { background: var(--color-accent-900); color: var(--color-accent-200); border-color: var(--color-accent-700); }
+  .langtoggle:hover, .themetoggle:hover { background: var(--color-accent-900); color: var(--color-accent-200); border-color: var(--color-accent-700); }
+  .themetoggle { margin-left: var(--space-1); display: inline-flex; align-items: center; justify-content: center; }
 </style>
 
 <script>
@@ -155,6 +165,18 @@ const enlaces = [
       document.documentElement.dataset.locale = "en";
       document.documentElement.lang = "en";
       localStorage.setItem("locale", "en");
+    }
+  });
+
+  const themeToggle = document.querySelector<HTMLButtonElement>(".themetoggle");
+  themeToggle?.addEventListener("click", () => {
+    const claroActivo = document.documentElement.dataset.theme === "light";
+    if (claroActivo) {
+      delete document.documentElement.dataset.theme;
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.dataset.theme = "light";
+      localStorage.setItem("theme", "light");
     }
   });
 

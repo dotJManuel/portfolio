@@ -61,8 +61,10 @@ const abierto = index === 0;
           {diagramas.map((d) => (
             <figure class="proj-diagram">
               <div class="diagram-frame">
-                <img class="diagram-img zoomable" data-lang="en" src={d.srcEn} alt={d.caption.en} loading="lazy" />
-                <img class="diagram-img zoomable" data-lang="es" src={d.srcEs} alt={d.caption.es} loading="lazy" />
+                <img class="diagram-img zoomable" data-diag-theme="dark" data-diag-lang="en" src={d.srcEn} alt={d.caption.en} loading="lazy" />
+                <img class="diagram-img zoomable" data-diag-theme="dark" data-diag-lang="es" src={d.srcEs} alt={d.caption.es} loading="lazy" />
+                <img class="diagram-img zoomable" data-diag-theme="light" data-diag-lang="en" src={d.srcEnLight} alt={d.caption.en} loading="lazy" />
+                <img class="diagram-img zoomable" data-diag-theme="light" data-diag-lang="es" src={d.srcEsLight} alt={d.caption.es} loading="lazy" />
               </div>
               <figcaption class="shot-cap"><Loc en={d.caption.en} es={d.caption.es} /></figcaption>
             </figure>
